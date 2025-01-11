@@ -1,14 +1,43 @@
-import { useState, useEffect } from "react";
-import Header from "./components/Header";
+import { useEffect } from "react";
 import Banner from "./components/Banner";
+import Header from "./components/Header";
+import Footer from "./components/Footer"; // Import Footer
 import MovieList from "./components/MovieList";
+import { useState } from "react";
+import MovieSearch from "./components/MovieSearch";
+import { MovieProvider } from "./context/MovieDetailContext";
 
 function App() {
-  const [movie, setMovie] = useState([]);
-  const [movieRate, setMovieRate] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+
+  const [searchData, setSearchData] = useState([]);
+
+  const handleSearch = async (value) => {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=false&language=vi&page=1`;
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+      },
+    };
+    if (value === "") return setSearchData([]);
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      setSearchData(data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchMovie = async () => {
+    (async function () {
+      const urls = [
+        "https://api.themoviedb.org/3/movie/popular?language=vi&page=1",
+        "https://api.themoviedb.org/3/movie/top_rated?language=vi",
+      ];
       const options = {
         method: "GET",
         headers: {
@@ -16,33 +45,38 @@ function App() {
           Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
         },
       };
-      const url1 = 'https://api.themoviedb.org/3/movie/popular?language=vi-US&page=1';
-      const url2 = 'https://api.themoviedb.org/3/movie/top_rated?language=vi-US&page=1';
+      const fetchMovies = async (url) => {
+        return await fetch(url, options).then((response) => response.json());
+      };
 
-      const [res1, res2] = await Promise.all([
-        fetch(url1, options),
-        fetch(url2, options),
-      ]);
+      try {
+        const response = await Promise.all(urls.map(fetchMovies));
 
-      const data1 = await res1.json();
-      const data2 = await res2.json();
-
-
-      setMovie(data1.results);
-      setMovieRate(data2.results);
-
-    };
-    fetchMovie();
+        setTrendingMovies(response[0].results);
+        setTopRatedMovies(response[1].results);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, []);
 
   return (
     <>
-      <div className="bg-black pb-10">
-        <Header />
-        <Banner />
-        <MovieList title={"Phim Hot"} data={movie} />
-        <MovieList title={"Phim Đề Cử"} data={movieRate}/>
-      </div>
+      <MovieProvider>
+        <div className="h-full bg-black text-white min-h-screen pb-10 relative">
+          <Header onSearch={handleSearch} />
+          <Banner />
+          {searchData.length === 0 && (
+            <MovieList title="Phim Hot" data={trendingMovies} />
+          )}
+          {searchData.length === 0 && (
+            <MovieList title="Phim đề cử" data={topRatedMovies} />
+          )}
+
+          {searchData.length > 0 && <MovieSearch data={searchData} />}
+        </div>
+        <Footer />
+      </MovieProvider>
     </>
   );
 }
