@@ -55,7 +55,7 @@ This is a movie browsing web application built with **React**, **Tailwind CSS**,
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/movie-app.git
+   git clone https://github.com/nhathao512/Movie-ReactJS.git
    ```
 
 2. Navigate into the project directory:
