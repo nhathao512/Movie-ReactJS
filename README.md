@@ -141,4 +141,6 @@ This app integrates with [TMDB API](https://developers.themoviedb.org/3) for fet
 ## ⚖️ License
 This project is licensed under the [License](LICENSE.md).
 
+---
+
 ## Thank you for visiting this repository! Feel free to clone, explore, and contribute ❤️.
