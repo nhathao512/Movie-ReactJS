@@ -138,6 +138,7 @@ This app integrates with [TMDB API](https://developers.themoviedb.org/3) for fet
 - **Responsive Design:**
   - Carousel is implemented to adapt to various screen sizes.
 
-## License
+## ⚖️ License
+This project is licensed under the [License](LICENSE.md).
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+## Thank you for visiting this repository! Feel free to clone, explore, and contribute ❤️.
