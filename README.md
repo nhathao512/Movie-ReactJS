@@ -1,4 +1,4 @@
-# 🎥 Movie App 🍿
+# 🎥 Movie ReactJS 🍿
 
 This is a movie browsing web application built with **React**, **Tailwind CSS**, and **Vite**. It utilizes **The Movie Database (TMDB) API** to display trending, top-rated movies and allows users to search for specific movies.
 
