@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import Banner from "./components/Banner";
 import Header from "./components/Header";
-import Footer from "./components/Footer"; // Import Footer
+import Footer from "./components/Footer"; 
 import MovieList from "./components/MovieList";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import { useState } from "react";
 import MovieSearch from "./components/MovieSearch";
 import { MovieProvider } from "./context/MovieDetailContext";
+
 
 function App() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -74,6 +76,7 @@ function App() {
           )}
 
           {searchData.length > 0 && <MovieSearch data={searchData} />}
+          <ScrollToTopButton />
         </div>
         <Footer />
       </MovieProvider>
@@ -82,3 +85,4 @@ function App() {
 }
 
 export default App;
+

@@ -4,11 +4,17 @@ import { useState } from "react";
 const Header = ({ onSearch }) => {
   const [search, setSearch] = useState("");
 
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  const handleScrollToTopOrReload = () => {
+    if (window.scrollY === 0) {
+      // Nếu đang ở đầu trang, reload
+      window.location.reload();
+    } else {
+      // Nếu không, cuộn lên đầu trang
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -16,7 +22,7 @@ const Header = ({ onSearch }) => {
       <div className="flex items-center gap-8">
         <h1
           className="text-[30px] uppercase text-red-700 font-bold cursor-pointer"
-          onClick={handleScrollToTop}
+          onClick={handleScrollToTopOrReload}
         >
           Hafo Movie
         </h1>
