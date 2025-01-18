@@ -28,12 +28,10 @@ const MovieList = ({ title, data }) => {
 
   return (
     <div className="my-10 px-10 max-w-full">
-      {/* Title */}
       <h2 className="text-xl font-bold uppercase mb-6 text-gray-100 tracking-wider">
         {title}
       </h2>
 
-      {/* Carousel */}
       <Carousel responsive={responsive} draggable={false} itemClass="px-2">
         {data?.map((movie) => (
           <div
@@ -41,7 +39,6 @@ const MovieList = ({ title, data }) => {
             className="relative w-[200px] h-[300px] rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer"
             onClick={() => handleVideoTrailer(movie.id)}
           >
-            {/* Background Image */}
             <div
               className="w-full h-full bg-cover bg-center"
               style={{
@@ -52,11 +49,9 @@ const MovieList = ({ title, data }) => {
                 })`,
               }}
             />
-            
-            {/* Gradient Overlay */}
+
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 z-0" />
 
-            {/* Movie Title */}
             <div className="absolute bottom-4 left-4 right-4 z-10 text-center">
               <h3 className="text-md font-semibold text-white truncate">
                 {movie.name || movie.title || movie.original_title}
