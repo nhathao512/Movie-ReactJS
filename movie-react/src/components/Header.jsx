@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import { useState, useRef, useEffect } from "react";
-import { FaMoon, FaSun } from "react-icons/fa";  
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const Header = ({ onSearch }) => {
   const [search, setSearch] = useState("");
   const [isGenreOpen, setIsGenreOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);  
+  const [isAccontOpen, setIsAccountOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const genreRef = useRef(null);
+  const accountRef = useRef(null);
 
   const genres = [
     "Hành động",
@@ -21,6 +23,13 @@ const Header = ({ onSearch }) => {
     "Phim chiếu rạp",
     "Khoa học viễn tưởng",
     "Phiêu lưu",
+  ];
+
+  const account = [
+    "Thông tin cá nhân",
+    "Danh sách yêu thích",
+    "Lịch sử xem phim",
+    "Đăng xuất",
   ];
 
   const handleScrollToTopOrReload = () => {
@@ -38,6 +47,10 @@ const Header = ({ onSearch }) => {
     setIsGenreOpen((prev) => !prev);
   };
 
+  const toggleAccontList = () => {
+    setIsAccountOpen((prev) => !prev);
+  };
+
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
     document.body.classList.toggle("dark", !isDarkMode);
@@ -47,6 +60,11 @@ const Header = ({ onSearch }) => {
     const handleClickOutside = (event) => {
       if (genreRef.current && !genreRef.current.contains(event.target)) {
         setIsGenreOpen(false);
+      } else if (
+        accountRef.current &&
+        !accountRef.current.contains(event.target)
+      ) {
+        setIsAccountOpen(false);
       }
     };
 
@@ -81,11 +99,11 @@ const Header = ({ onSearch }) => {
               Thể loại
             </button>
             {isGenreOpen && (
-              <ul className="absolute top-full left-0 mt-2 bg-white/50 text-black shadow-lg rounded-lg w-40 backdrop-blur-md">
+              <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white/50 text-black shadow-lg rounded-lg w-40 md:w-52 lg:w-45 backdrop-blur-md">
                 {genres.map((genre, index) => (
                   <li
                     key={index}
-                    className="p-2 hover:text-red-600 transition duration-300 cursor-pointer"
+                    className="p-2 text-[15px] md:text-[15px] lg:text-[15px] hover:text-red-600 transition duration-300 cursor-pointer"
                   >
                     {genre}
                   </li>
@@ -93,6 +111,7 @@ const Header = ({ onSearch }) => {
               </ul>
             )}
           </div>
+
           <a
             href="#"
             className="text-white hover:text-red-700 transition duration-300"
@@ -121,17 +140,31 @@ const Header = ({ onSearch }) => {
         >
           Search
         </button>
-        <a
-          href="#"
-          className="text-white hover:text-red-700 transition duration-300"
-        >
-          Tài khoản
-        </a>
+        <div className="relative" ref={accountRef}>
+          <button
+            onClick={toggleAccontList}
+            className="text-white hover:text-red-700 transition duration-300"
+          >
+            Tài khoản
+          </button>
+          {isAccontOpen && (
+            <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 bg-white/50 text-black shadow-lg rounded-lg w-40 md:w-52 lg:w-40 backdrop-blur-md">
+              {account.map((genre, index) => (
+                <li
+                  key={index}
+                  className="p-2 text-[15px] md:text-[15px] lg:text-[15px] hover:text-red-600 transition duration-300 cursor-pointer"
+                >
+                  {genre}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <button
-          onClick={toggleDarkMode}  
+          onClick={toggleDarkMode}
           className="text-white hover:text-yellow-500 transition duration-300"
         >
-          {isDarkMode ? <FaSun /> : <FaMoon />} 
+          {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
       </div>
     </header>
