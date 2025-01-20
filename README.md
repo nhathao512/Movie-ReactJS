@@ -10,46 +10,6 @@ This is a movie browsing web application built with **React**, **Tailwind CSS**,
 - 🎬 **Trailer Modal:** Watch movie trailers via YouTube.
 - 📱 **Responsive Design:** Ensures compatibility with various devices.
 
-## 🗂️ Project Structure
-
-```plaintext
-.
-├── public
-│   ├── banner-1.png
-│   ├── banner-2.png
-│   └── vite.svg
-├── src
-│   ├── assets
-│   │   ├── bg-login.jpg
-│   │   ├── play-button.png
-│   │   ├── rating-half.png
-│   │   ├── rating.png
-│   │   ├── react.svg
-│   │   ├── temp-1.jpg
-│   │   └── temp-2.jpeg
-│   ├── components
-│   │   ├── Banner.jsx
-│   │   ├── Footer.jsx
-│   │   ├── Header.jsx
-│   │   ├── MovieList.jsx
-│   │   └── MovieSearch.jsx
-│   ├── context
-│   │   └── MovieDetailContext.jsx
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
-├── .env
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package.json
-├── package-lock.json
-├── postcss.config.js
-├── README.md
-├── tailwind.config.js
-└── vite.config.js
-```
-
 ## ⚙️ Installation
 
 1. Clone the repository:
