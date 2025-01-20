@@ -99,7 +99,7 @@ const Header = ({ onSearch }) => {
               Thể loại
             </button>
             {isGenreOpen && (
-              <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white/50 text-black shadow-lg rounded-lg w-40 md:w-52 lg:w-45 backdrop-blur-md">
+              <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white/50 text-black shadow-lg rounded-lg w-40 md:w-52 lg:w-44 backdrop-blur-md">
                 {genres.map((genre, index) => (
                   <li
                     key={index}
