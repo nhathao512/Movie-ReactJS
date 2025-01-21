@@ -96,7 +96,8 @@ const Header = ({ onSearch }) => {
               onClick={toggleGenreList}
               className="text-white hover:text-red-700 transition duration-300"
             >
-              Thể loại
+              Thể loại{" "}
+              <i className="fa-solid fa-chevron-down text-[10px] relative top-[-2px]"></i>
             </button>
             {isGenreOpen && (
               <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white/50 text-black shadow-lg rounded-lg w-40 md:w-52 lg:w-44 backdrop-blur-md">
@@ -133,6 +134,11 @@ const Header = ({ onSearch }) => {
           className="border bg-white/20 border-gray-300 p-2 text-white rounded-lg focus:ring focus:ring-red-700 focus:outline-none transition duration-300"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSearch(search.trim()); 
+            }
+          }}
         />
         <button
           className="bg-red-700 text-white px-3 py-1 rounded-lg hover:bg-red-800 transition duration-300"
@@ -145,7 +151,8 @@ const Header = ({ onSearch }) => {
             onClick={toggleAccontList}
             className="text-white hover:text-red-700 transition duration-300"
           >
-            Tài khoản
+            Tài khoản{" "}
+            <i className="fa-solid fa-chevron-down text-[10px] relative top-[-2px]"></i>
           </button>
           {isAccontOpen && (
             <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 bg-white/50 text-black shadow-lg rounded-lg w-40 md:w-52 lg:w-40 backdrop-blur-md">

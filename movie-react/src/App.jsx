@@ -1,10 +1,10 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import Banner from "./components/Banner";
 import Header from "./components/Header";
 import Footer from "./components/Footer"; 
 import MovieList from "./components/MovieList";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import { useState } from "react";
 import MovieSearch from "./components/MovieSearch";
 import { MovieProvider } from "./context/MovieDetailContext";
 
